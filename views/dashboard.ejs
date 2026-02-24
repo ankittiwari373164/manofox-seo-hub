@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manofox SEO Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #17171f;
+    --border: #1e1e2a;
+    --accent: #ff5c00;
+    --accent2: #ff9a3c;
+    --green: #00e88f;
+    --blue: #3b82f6;
+    --text: #e8e8f0;
+    --muted: #6b6b7e;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Syne', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;overflow-x:hidden;}
+
+/* ── HEADER ── */
+.header{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 40px;
+    border-bottom:1px solid var(--border);
+    position:sticky;top:0;z-index:100;
+    background:rgba(10,10,15,0.95);
+    backdrop-filter:blur(20px);
+}
+.logo{font-family:var(--sans);font-size:1.4rem;font-weight:800;color:var(--text);text-decoration:none;}
+.logo span{color:var(--accent);}
+.header-actions{display:flex;gap:12px;align-items:center;}
+.badge-live{
+    background:rgba(0,232,143,0.1);border:1px solid rgba(0,232,143,0.3);
+    color:var(--green);font-family:var(--mono);font-size:0.7rem;
+    padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:6px;
+}
+.dot-pulse{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.btn{
+    font-family:var(--sans);font-weight:600;font-size:0.85rem;
+    padding:9px 18px;border-radius:6px;border:none;cursor:pointer;
+    text-decoration:none;transition:all 0.2s;
+}
+.btn-primary{background:var(--accent);color:white;}
+.btn-primary:hover{background:var(--accent2);}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}
+.btn-ghost:hover{border-color:var(--accent);color:var(--text);}
+
+/* ── MAIN ── */
+.main{padding:40px;}
+.page-title{font-size:2.2rem;font-weight:800;margin-bottom:6px;}
+.page-sub{color:var(--muted);font-family:var(--mono);font-size:0.85rem;margin-bottom:40px;}
+.page-sub span{color:var(--accent);}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:40px;}
+.stat-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:24px;position:relative;overflow:hidden;
+}
+.stat-card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+}
+.stat-label{font-family:var(--mono);font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;}
+.stat-value{font-size:2rem;font-weight:800;color:var(--text);}
+.stat-sub{font-size:0.8rem;color:var(--muted);margin-top:6px;}
+.stat-green{color:var(--green);}
+
+/* ── SECTION HEADER ── */
+.section-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.section-title{font-size:1.1rem;font-weight:700;}
+.section-count{font-family:var(--mono);font-size:0.75rem;color:var(--muted);}
+
+/* ── SITES GRID ── */
+.sites-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;}
+.site-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;
+    padding:24px;text-decoration:none;color:var(--text);
+    transition:all 0.2s;cursor:pointer;display:block;
+    position:relative;overflow:hidden;
+}
+.site-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,92,0,0.1);}
+.site-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+.site-icon{
+    width:44px;height:44px;border-radius:10px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.2rem;font-weight:800;color:white;
+}
+.site-status-badge{
+    font-family:var(--mono);font-size:0.65rem;padding:3px 8px;border-radius:20px;
+}
+.status-auto{background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);color:var(--blue);}
+.status-managed{background:rgba(0,232,143,0.1);border:1px solid rgba(0,232,143,0.3);color:var(--green);}
+.site-name{font-size:1.1rem;font-weight:700;margin-bottom:4px;}
+.site-domain{font-family:var(--mono);font-size:0.75rem;color:var(--muted);}
+.site-meta{display:flex;gap:16px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
+.site-meta-item{display:flex;flex-direction:column;gap:3px;}
+.meta-label{font-family:var(--mono);font-size:0.65rem;color:var(--muted);text-transform:uppercase;}
+.meta-value{font-weight:700;font-size:0.95rem;}
+.cat-chip{
+    display:inline-block;margin-top:10px;
+    font-family:var(--mono);font-size:0.65rem;
+    padding:3px 8px;border-radius:4px;
+    background:var(--surface2);border:1px solid var(--border);color:var(--muted);
+    text-transform:uppercase;
+}
+
+/* ── EMPTY STATE ── */
+.empty-state{
+    text-align:center;padding:80px 40px;
+    background:var(--surface);border:2px dashed var(--border);border-radius:14px;
+}
+.empty-icon{font-size:3rem;margin-bottom:16px;}
+.empty-title{font-size:1.3rem;font-weight:700;margin-bottom:8px;}
+.empty-sub{color:var(--muted);margin-bottom:24px;}
+
+/* ── NEXT UPDATE ── */
+.update-bar{
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;
+    padding:16px 24px;margin-bottom:40px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.update-bar-left{display:flex;align-items:center;gap:12px;}
+.update-icon{font-size:1.3rem;}
+.update-text{font-size:0.9rem;color:var(--muted);}
+.update-time{font-family:var(--mono);font-size:0.85rem;color:var(--accent2);}
+
+@media(max-width:768px){
+    .header{padding:16px 20px;}
+    .main{padding:24px 16px;}
+    .stats-row{grid-template-columns:1fr 1fr;}
+    .sites-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <a href="/" class="logo">Mano<span>fox</span> <span style="font-size:0.85rem;font-weight:400;color:var(--muted);">SEO Hub</span></a>
+    <div class="header-actions">
+        <div class="badge-live">
+            <div class="dot-pulse"></div>
+            Robot Active
+        </div>
+        <a href="/force-update-all" class="btn btn-ghost">⚡ Update All</a>
+        <a href="/sites/new" class="btn btn-primary">+ Add Site</a>
+        <a href="/logout" class="btn btn-ghost">Logout</a>
+    </div>
+</header>
+
+<main class="main">
+    <h1 class="page-title">Client Sites</h1>
+    <p class="page-sub">
+        Managing <span><%= sites.length %> site<%= sites.length !== 1 ? 's' : '' %></span> &nbsp;·&nbsp;
+        SEO auto-updates every 7 hours &nbsp;·&nbsp;
+        <span style="color:var(--green);">All systems operational</span>
+    </p>
+
+    <!-- Stats Row -->
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-label">Total Sites</div>
+            <div class="stat-value"><%= sites.length %></div>
+            <div class="stat-sub"><%= sites.filter(s=>s.autoRegistered).length %> auto-registered</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Visits (7d)</div>
+            <div class="stat-value stat-green"><%= totalVisits.toLocaleString() %></div>
+            <div class="stat-sub">Across all sites</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Next Auto-Update</div>
+            <div class="stat-value" style="font-size:1.3rem;font-family:var(--mono);">
+                <%= nextUpdate.toLocaleTimeString('en-IN', {hour:'2-digit',minute:'2-digit'}) %>
+            </div>
+            <div class="stat-sub"><%= nextUpdate.toLocaleDateString('en-IN') %></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Categories</div>
+            <div class="stat-value"><%= [...new Set(sites.map(s=>s.category))].length %></div>
+            <div class="stat-sub">Different niches</div>
+        </div>
+    </div>
+
+    <!-- Next Update Banner -->
+    <div class="update-bar">
+        <div class="update-bar-left">
+            <span class="update-icon">🤖</span>
+            <div>
+                <div style="font-weight:600;font-size:0.9rem;">SEO Robot running</div>
+                <div class="update-text">Fetches Google Trends & updates all sites' keywords automatically</div>
+            </div>
+        </div>
+        <div class="update-time">Next: <%= nextUpdate.toLocaleTimeString('en-IN', {hour:'2-digit',minute:'2-digit',hour12:true}) %></div>
+    </div>
+
+    <!-- Sites Grid -->
+    <div class="section-hdr">
+        <div class="section-title">All Client Sites</div>
+        <div class="section-count"><%= sites.length %> sites</div>
+    </div>
+
+    <% if (sites.length === 0) { %>
+    <div class="empty-state">
+        <div class="empty-icon">🌐</div>
+        <div class="empty-title">No sites yet</div>
+        <div class="empty-sub">Add your first client site to start managing SEO</div>
+        <a href="/sites/new" class="btn btn-primary">+ Add First Site</a>
+    </div>
+    <% } else { %>
+    <div class="sites-grid">
+        <% sites.forEach(function(site) { %>
+        <a href="/sites/<%= site.siteId %>" class="site-card">
+            <div class="site-card-header">
+                <div class="site-icon"><%= site.name.charAt(0).toUpperCase() %></div>
+                <span class="site-status-badge <%= site.autoRegistered ? 'status-auto' : 'status-managed' %>">
+                    <%= site.autoRegistered ? 'Auto-reg' : 'Managed' %>
+                </span>
+            </div>
+            <div class="site-name"><%= site.name %></div>
+            <div class="site-domain"><%= site.domain || 'No domain set' %></div>
+            <span class="cat-chip"><%= site.category || 'default' %></span>
+            <div class="site-meta">
+                <div class="site-meta-item">
+                    <span class="meta-label">7d visits</span>
+                    <span class="meta-value" style="color:var(--green);"><%= site.visits7d %></span>
+                </div>
+                <div class="site-meta-item">
+                    <span class="meta-label">Keywords</span>
+                    <span class="meta-value" style="font-size:0.75rem;color:var(--muted);">
+                        <%= site.seoData?.keywords ? site.seoData.keywords.split(',').length + ' terms' : '—' %>
+                    </span>
+                </div>
+                <div class="site-meta-item">
+                    <span class="meta-label">Last seen</span>
+                    <span class="meta-value" style="font-size:0.75rem;color:var(--muted);">
+                        <%= new Date(site.lastSeen).toLocaleDateString('en-IN') %>
+                    </span>
+                </div>
+            </div>
+        </a>
+        <% }); %>
+    </div>
+    <% } %>
+</main>
+
+</body>
+</html>

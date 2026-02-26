@@ -4,361 +4,320 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><%= site.name %> — Manofox SEO Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root{--bg:#0a0a0f;--surface:#111118;--surface2:#17171f;--border:#1e1e2a;--accent:#ff5c00;--accent2:#ff9a3c;--green:#00e88f;--blue:#3b82f6;--red:#ef4444;--text:#e8e8f0;--muted:#6b6b7e;--mono:'Space Mono',monospace;--sans:'Syne',sans-serif;}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;}
-a{text-decoration:none;color:inherit;}
-.header{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.97);backdrop-filter:blur(20px);}
-.logo{font-weight:800;font-size:1.3rem;}.logo span{color:var(--accent);}
-.btn{font-family:var(--sans);font-weight:600;font-size:0.82rem;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:6px;}
-.btn-primary{background:var(--accent);color:white;}.btn-primary:hover{background:var(--accent2);}
-.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}.btn-ghost:hover{border-color:var(--accent);color:var(--text);}
-.btn-green{background:rgba(0,232,143,0.1);color:var(--green);border:1px solid rgba(0,232,143,0.3);}
-.btn-danger{background:rgba(239,68,68,0.1);color:var(--red);border:1px solid rgba(239,68,68,0.2);}
-.main{padding:36px 40px;}
-.breadcrumb{font-family:var(--mono);font-size:0.75rem;color:var(--muted);margin-bottom:20px;}
-.breadcrumb a:hover{color:var(--accent);}
-.page-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;flex-wrap:wrap;gap:16px;}
-.page-title{font-size:2rem;font-weight:800;margin-bottom:6px;}
-.page-domain{font-family:var(--mono);font-size:0.8rem;color:var(--muted);}
-.page-domain span{color:var(--accent2);}
-.tabs{display:flex;gap:4px;border-bottom:1px solid var(--border);margin-bottom:28px;}
-.tab{font-family:var(--sans);font-weight:600;font-size:0.85rem;padding:10px 20px;cursor:pointer;border:none;background:transparent;color:var(--muted);border-bottom:2px solid transparent;transition:all 0.2s;}
-.tab.active{color:var(--text);border-bottom-color:var(--accent);}
-.tab-content{display:none;}.tab-content.active{display:block;}
-.day-btn{font-family:var(--mono);font-size:0.75rem;padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;text-decoration:none;transition:0.2s;margin-right:6px;}
-.day-btn.active{background:var(--accent);color:white;border-color:var(--accent);}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
-.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden;}
-.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
-.stat-label{font-family:var(--mono);font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
-.stat-value{font-size:1.8rem;font-weight:800;}
-.stat-sub{font-size:0.75rem;color:var(--muted);margin-top:5px;}
-.charts-row{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:24px;}
-.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;}
-.chart-title{font-weight:700;font-size:0.8rem;margin-bottom:20px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-family:var(--mono);}
-.chart-wrap{position:relative;height:220px;}
-.data-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
-.table-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;}
-.table-title{font-weight:700;font-size:0.8rem;margin-bottom:16px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-family:var(--mono);}
-table{width:100%;border-collapse:collapse;font-size:0.88rem;}
-th{text-align:left;padding:10px 12px;color:var(--muted);font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;border-bottom:1px solid var(--border);}
-td{padding:10px 12px;border-bottom:1px solid rgba(30,30,42,0.5);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0a0a0f;color:#e8e8f0;font-family:'Segoe UI',sans-serif;min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+.hdr{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;border-bottom:1px solid #1e1e2a;background:#0a0a0f;position:sticky;top:0;z-index:99;}
+.logo{font-weight:800;font-size:1.2rem;}.logo span{color:#ff5c00;}
+.btn{padding:7px 16px;border-radius:6px;border:none;cursor:pointer;font-size:0.82rem;font-weight:600;display:inline-block;transition:0.2s;text-decoration:none;}
+.btn-o{background:#ff5c00;color:#fff;}.btn-o:hover{background:#ff9a3c;}
+.btn-g{background:transparent;border:1px solid #1e1e2a;color:#6b6b7e;}.btn-g:hover{border-color:#ff5c00;color:#e8e8f0;}
+.btn-green{background:rgba(0,232,143,0.1);color:#00e88f;border:1px solid rgba(0,232,143,0.3);}
+.btn-red{background:rgba(239,68,68,0.1);color:#ef4444;border:1px solid rgba(239,68,68,0.2);}
+.main{padding:32px;}
+.bread{font-size:0.78rem;color:#6b6b7e;margin-bottom:18px;}
+.bread a:hover{color:#ff5c00;}
+.page-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.page-title{font-size:1.8rem;font-weight:800;margin-bottom:4px;}
+.page-sub{font-size:0.82rem;color:#6b6b7e;}
+.page-sub span{color:#ff9a3c;}
+.tabs{display:flex;gap:4px;border-bottom:1px solid #1e1e2a;margin-bottom:24px;overflow-x:auto;}
+.tab{padding:10px 18px;cursor:pointer;border:none;background:transparent;color:#6b6b7e;font-size:0.85rem;font-weight:600;border-bottom:2px solid transparent;white-space:nowrap;transition:0.2s;}
+.tab.active{color:#e8e8f0;border-bottom-color:#ff5c00;}
+.tab-pane{display:none;}.tab-pane.active{display:block;}
+.day-btn{font-size:0.75rem;padding:5px 12px;border-radius:6px;border:1px solid #1e1e2a;background:transparent;color:#6b6b7e;cursor:pointer;text-decoration:none;margin-right:6px;transition:0.2s;}
+.day-btn.active,.day-btn:hover{background:#ff5c00;color:#fff;border-color:#ff5c00;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:20px 0;}
+.stat{background:#111118;border:1px solid #1e1e2a;border-radius:10px;padding:18px;position:relative;overflow:hidden;}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#ff5c00,#ff9a3c);}
+.stat-lbl{font-size:0.65rem;color:#6b6b7e;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.stat-val{font-size:1.6rem;font-weight:800;}
+.stat-sub{font-size:0.75rem;color:#6b6b7e;margin-top:4px;}
+.charts{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:20px;}
+.card{background:#111118;border:1px solid #1e1e2a;border-radius:10px;padding:20px;}
+.card-title{font-size:0.7rem;color:#6b6b7e;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+.chart-wrap{position:relative;height:200px;}
+.data-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+table{width:100%;border-collapse:collapse;font-size:0.85rem;}
+th{text-align:left;padding:8px 12px;color:#6b6b7e;font-size:0.68rem;text-transform:uppercase;border-bottom:1px solid #1e1e2a;}
+td{padding:8px 12px;border-bottom:1px solid rgba(30,30,42,0.5);}
 tr:last-child td{border-bottom:none;}
-tr:hover td{background:var(--surface2);}
-.num-cell{font-family:var(--mono);color:var(--green);font-weight:700;}
-.seo-editor{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px;margin-bottom:20px;}
-.editor-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}
-.editor-title{font-weight:700;font-size:1rem;}
-.page-tab{font-family:var(--mono);font-size:0.75rem;padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;text-decoration:none;transition:0.2s;margin-right:6px;margin-bottom:6px;display:inline-block;}
-.page-tab.active,.page-tab:hover{background:var(--accent);color:white;border-color:var(--accent);}
-label{display:block;font-family:var(--mono);font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;margin-top:20px;}
-label:first-of-type{margin-top:0;}
-input[type=text],textarea,select{width:100%;padding:12px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:var(--sans);font-size:0.9rem;transition:0.2s;resize:vertical;}
-input[type=text]:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);}
-textarea{min-height:80px;}
-.keywords-display{width:100%;padding:12px 14px;background:var(--surface2);border:1px solid rgba(0,232,143,0.3);border-radius:8px;color:var(--green);font-family:var(--mono);font-size:0.78rem;min-height:60px;line-height:1.6;}
-.add-page-form{display:flex;gap:10px;margin-top:16px;}
-.add-page-form input{flex:1;}
-/* Install tab */
-.stack-panel{display:none;}.stack-panel.active{display:block;}
-.snippet-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px;}
-.snippet-title{font-weight:700;font-size:0.95rem;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.snippet-sub{font-size:0.85rem;color:var(--muted);margin-bottom:14px;line-height:1.6;}
-.code-block{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:16px;font-family:var(--mono);font-size:0.78rem;color:var(--accent2);white-space:pre;overflow-x:auto;margin-bottom:10px;line-height:1.7;}
-.copy-btn{font-family:var(--mono);font-size:0.75rem;padding:6px 14px;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:0.2s;}
-.copy-btn:hover{border-color:var(--green);color:var(--green);}
-.badge{font-family:var(--mono);font-size:0.65rem;padding:3px 8px;border-radius:4px;}
-.badge-green{background:rgba(0,232,143,0.1);color:var(--green);border:1px solid rgba(0,232,143,0.3);}
-.badge-orange{background:rgba(255,154,60,0.15);color:var(--accent2);}
-/* Keyword history */
-.kw-item{padding:12px 0;border-bottom:1px solid var(--border);display:flex;gap:14px;align-items:flex-start;}
-.kw-item:last-child{border-bottom:none;}
-.kw-source{font-family:var(--mono);font-size:0.65rem;padding:3px 8px;border-radius:4px;white-space:nowrap;}
-.src-google-trends{background:rgba(59,130,246,0.15);color:var(--blue);}
-.src-fallback{background:rgba(107,107,126,0.2);color:var(--muted);}
-.src-manual{background:rgba(0,232,143,0.1);color:var(--green);}
-.kw-text{font-size:0.8rem;color:var(--muted);line-height:1.5;}
-.kw-date{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-top:3px;}
+.num{font-weight:700;color:#00e88f;}
+.empty{color:#6b6b7e;font-size:0.85rem;padding:16px 0;}
+/* SEO editor */
+.editor{background:#111118;border:1px solid #1e1e2a;border-radius:10px;padding:24px;margin-bottom:16px;}
+.editor-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.editor-title{font-weight:700;}
+.editor-date{font-size:0.72rem;color:#6b6b7e;}
+.pg-tab{font-size:0.75rem;padding:5px 12px;border-radius:6px;border:1px solid #1e1e2a;background:transparent;color:#6b6b7e;cursor:pointer;text-decoration:none;margin:0 4px 8px 0;display:inline-block;transition:0.2s;}
+.pg-tab.active,.pg-tab:hover{background:#ff5c00;color:#fff;border-color:#ff5c00;}
+label{display:block;font-size:0.7rem;color:#6b6b7e;text-transform:uppercase;letter-spacing:1px;margin:16px 0 6px;}
+label:first-child{margin-top:0;}
+input[type=text],textarea,select{width:100%;padding:10px 12px;background:#17171f;border:1px solid #1e1e2a;border-radius:6px;color:#e8e8f0;font-size:0.88rem;transition:0.2s;}
+input[type=text]:focus,textarea:focus,select:focus{outline:none;border-color:#ff5c00;}
+textarea{min-height:75px;resize:vertical;}
+.kw-box{width:100%;padding:10px 12px;background:#17171f;border:1px solid rgba(0,232,143,0.3);border-radius:6px;color:#00e88f;font-size:0.78rem;min-height:55px;line-height:1.6;}
+.add-pg{display:flex;gap:8px;margin-top:14px;}
+.add-pg input{flex:1;}
+/* Install */
+.stack-panel{display:none;}.stack-panel.show{display:block;}
+.snip-card{background:#111118;border:1px solid #1e1e2a;border-radius:10px;padding:20px;margin-bottom:14px;}
+.snip-title{font-weight:700;font-size:0.92rem;margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.snip-sub{font-size:0.83rem;color:#6b6b7e;margin-bottom:12px;line-height:1.6;}
+.code{background:#0a0a0f;border:1px solid #1e1e2a;border-radius:6px;padding:14px;font-family:'Courier New',monospace;font-size:0.76rem;color:#ff9a3c;white-space:pre;overflow-x:auto;margin-bottom:8px;line-height:1.7;}
+.copy-btn{font-size:0.72rem;padding:5px 12px;border-radius:4px;border:1px solid #1e1e2a;background:transparent;color:#6b6b7e;cursor:pointer;transition:0.2s;}
+.copy-btn:hover{border-color:#00e88f;color:#00e88f;}
+.badge-g{background:rgba(0,232,143,0.1);color:#00e88f;border:1px solid rgba(0,232,143,0.3);font-size:0.65rem;padding:2px 8px;border-radius:4px;}
+.badge-o{background:rgba(255,154,60,0.15);color:#ff9a3c;font-size:0.65rem;padding:2px 8px;border-radius:4px;}
+/* History */
+.kw-row{padding:12px 0;border-bottom:1px solid #1e1e2a;display:flex;gap:12px;align-items:flex-start;}
+.kw-row:last-child{border-bottom:none;}
+.src-badge{font-size:0.65rem;padding:2px 8px;border-radius:4px;white-space:nowrap;}
+.src-google-trends{background:rgba(59,130,246,0.15);color:#3b82f6;}
+.src-fallback{background:rgba(107,107,126,0.2);color:#6b6b7e;}
+.src-manual{background:rgba(0,232,143,0.1);color:#00e88f;}
+.kw-text{font-size:0.8rem;color:#6b6b7e;line-height:1.5;}
+.kw-date{font-size:0.68rem;color:#6b6b7e;margin-top:2px;}
 /* Settings */
-.danger-zone{background:rgba(239,68,68,0.03);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:24px;margin-top:20px;}
-.danger-title{color:var(--red);font-weight:700;margin-bottom:8px;}
+.danger{background:rgba(239,68,68,0.03);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:20px;margin-top:16px;}
+.danger-title{color:#ef4444;font-weight:700;margin-bottom:6px;}
 /* Toast */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--green);color:#000;font-weight:700;padding:12px 20px;border-radius:8px;font-size:0.9rem;z-index:9999;animation:slideUp 0.3s ease;}
-@keyframes slideUp{from{transform:translateY(20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
-@media(max-width:900px){
-  .header{padding:14px 16px;}.main{padding:20px 16px;}
-  .stats-grid{grid-template-columns:1fr 1fr;}.charts-row,.data-row{grid-template-columns:1fr;}
-}
+.toast{position:fixed;bottom:20px;right:20px;background:#00e88f;color:#000;font-weight:700;padding:10px 18px;border-radius:8px;font-size:0.88rem;z-index:9999;}
+@media(max-width:800px){.stats{grid-template-columns:1fr 1fr;}.charts,.data-row{grid-template-columns:1fr;}.hdr{padding:12px 16px;}.main{padding:16px;}}
 </style>
 </head>
 <body>
 
-<header class="header">
-  <a href="/" class="logo">Mano<span>fox</span>. <span style="font-size:0.75rem;font-weight:400;color:var(--muted);">SEO Hub</span></a>
-  <div style="display:flex;gap:10px;">
-    <a href="/sites/<%= site.siteId %>/force-update" class="btn btn-green">⚡ Force Update</a>
-    <a href="/sites/new" class="btn btn-primary">+ Add Site</a>
-    <a href="/" class="btn btn-ghost">← Dashboard</a>
+<header class="hdr">
+  <a href="/" class="logo">Mano<span>fox</span>. <span style="font-size:0.72rem;font-weight:400;color:#6b6b7e;">SEO Hub</span></a>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <a href="/sites/<%= site.siteId %>/force-update" class="btn btn-green">⚡ Update</a>
+    <a href="/sites/new" class="btn btn-o">+ New Site</a>
+    <a href="/" class="btn btn-g">← Back</a>
   </div>
 </header>
 
-<main class="main">
-  <div class="breadcrumb"><a href="/">Dashboard</a> / <%= site.name %></div>
+<div class="main">
+  <div class="bread"><a href="/">Dashboard</a> / <%= site.name %></div>
 
   <div class="page-hdr">
     <div>
-      <h1 class="page-title"><%= site.name %></h1>
-      <div class="page-domain">
-        🌐 <span><%= site.domain || 'No domain set' %></span>
-        &nbsp;·&nbsp; Category: <span><%= site.category || 'default' %></span>
-      </div>
+      <div class="page-title"><%= site.name %></div>
+      <div class="page-sub">🌐 <span><%= site.domain || 'No domain set' %></span> &nbsp;·&nbsp; Category: <span><%= site.category || 'default' %></span></div>
     </div>
-    <% if(site.domain) { %>
-    <a href="http://<%= site.domain %>" target="_blank" class="btn btn-ghost">🔗 Visit Site</a>
+    <% if(site.domain){ %>
+    <a href="http://<%= site.domain %>" target="_blank" class="btn btn-g">🔗 Visit Site</a>
     <% } %>
   </div>
 
-  <!-- TABS -->
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('analytics',this)">📊 Analytics</button>
-    <button class="tab" onclick="switchTab('seo',this)">🔍 SEO Editor</button>
-    <button class="tab" onclick="switchTab('install',this)">⚙️ Install</button>
-    <button class="tab" onclick="switchTab('history',this)">📜 History</button>
-    <button class="tab" onclick="switchTab('settings',this)">🔧 Settings</button>
+    <button class="tab active" onclick="showTab('analytics',this)">📊 Analytics</button>
+    <button class="tab" onclick="showTab('seo',this)">🔍 SEO Editor</button>
+    <button class="tab" onclick="showTab('install',this)">⚙️ Install</button>
+    <button class="tab" onclick="showTab('history',this)">📜 History</button>
+    <button class="tab" onclick="showTab('settings',this)">🔧 Settings</button>
   </div>
 
-  <!-- ═══ ANALYTICS TAB ═══ -->
-  <div id="tab-analytics" class="tab-content active">
-    <div style="margin-bottom:20px;">
+  <!-- ANALYTICS -->
+  <div id="tab-analytics" class="tab-pane active">
+    <div style="margin-bottom:18px;">
       <% [7,14,21,30].forEach(function(d){ %>
-      <a href="/sites/<%= site.siteId %>?days=<%= d %>" class="day-btn <%= selectedDays==d?'active':'' %>"><%= d %>d</a>
+      <a href="/sites/<%= site.siteId %>?days=<%= d %>" class="day-btn <%= selectedDays==d ? 'active' : '' %>"><%= d %>d</a>
       <% }); %>
     </div>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-label">Total Visits</div>
-        <div class="stat-value" style="color:var(--green);"><%= totalVisits.toLocaleString() %></div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-lbl">Total Visits</div>
+        <div class="stat-val" style="color:#00e88f;"><%= totalVisits %></div>
         <div class="stat-sub">Last <%= selectedDays %> days</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">Avg / Day</div>
-        <div class="stat-value"><%= (totalVisits/selectedDays).toFixed(1) %></div>
+      <div class="stat">
+        <div class="stat-lbl">Avg / Day</div>
+        <div class="stat-val"><%= (totalVisits/selectedDays).toFixed(1) %></div>
         <div class="stat-sub">Daily average</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">Top Device</div>
-        <% var topDev = deviceStats.sort(function(a,b){return b.count-a.count;})[0]; %>
-        <div class="stat-value" style="font-size:1.2rem;"><%= topDev ? topDev._id : '—' %></div>
-        <div class="stat-sub"><%= topDev ? topDev.count+' visits' : 'No data yet' %></div>
+      <div class="stat">
+        <div class="stat-lbl">Top Device</div>
+        <% var topD = deviceStats.length > 0 ? deviceStats.sort(function(a,b){return b.count-a.count;})[0] : null; %>
+        <div class="stat-val" style="font-size:1.1rem;"><%= topD ? topD._id : '—' %></div>
+        <div class="stat-sub"><%= topD ? topD.count+' visits' : 'No data' %></div>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">Tracked Pages</div>
-        <div class="stat-value"><%= pageStats.length %></div>
+      <div class="stat">
+        <div class="stat-lbl">Pages Tracked</div>
+        <div class="stat-val"><%= pageStats.length %></div>
         <div class="stat-sub">Unique pages</div>
       </div>
     </div>
 
-    <div class="charts-row">
-      <div class="chart-card">
-        <div class="chart-title">Traffic Trend</div>
+    <div class="charts">
+      <div class="card">
+        <div class="card-title">Traffic Trend</div>
         <div class="chart-wrap"><canvas id="trafficChart"></canvas></div>
       </div>
-      <div class="chart-card">
-        <div class="chart-title">Device Split</div>
+      <div class="card">
+        <div class="card-title">Device Split</div>
         <div class="chart-wrap"><canvas id="deviceChart"></canvas></div>
       </div>
     </div>
 
     <div class="data-row">
-      <div class="table-card">
-        <div class="table-title">Top Referrers</div>
+      <div class="card">
+        <div class="card-title">Top Referrers</div>
         <% if(referrerStats.length===0){ %>
-        <p style="color:var(--muted);font-size:0.85rem;margin-top:12px;">No data yet.</p>
+        <div class="empty">No data yet.</div>
         <% } else { %>
-        <table><tr><th>Source</th><th>Visits</th></tr>
-        <% referrerStats.forEach(function(r){ %>
-        <tr><td><%= r._id||'Direct' %></td><td class="num-cell"><%= r.count %></td></tr>
-        <% }); %>
-        </table><% } %>
+        <table>
+          <tr><th>Source</th><th>Visits</th></tr>
+          <% referrerStats.forEach(function(r){ %>
+          <tr><td><%= r._id || 'Direct' %></td><td class="num"><%= r.count %></td></tr>
+          <% }); %>
+        </table>
+        <% } %>
       </div>
-      <div class="table-card">
-        <div class="table-title">Top Pages</div>
+      <div class="card">
+        <div class="card-title">Top Pages</div>
         <% if(pageStats.length===0){ %>
-        <p style="color:var(--muted);font-size:0.85rem;margin-top:12px;">No data yet.</p>
+        <div class="empty">No data yet.</div>
         <% } else { %>
-        <table><tr><th>Page</th><th>Visits</th></tr>
-        <% pageStats.forEach(function(p){ %>
-        <tr><td>/<%= p._id %></td><td class="num-cell"><%= p.count %></td></tr>
-        <% }); %>
-        </table><% } %>
+        <table>
+          <tr><th>Page</th><th>Visits</th></tr>
+          <% pageStats.forEach(function(p){ %>
+          <tr><td>/<%= p._id %></td><td class="num"><%= p.count %></td></tr>
+          <% }); %>
+        </table>
+        <% } %>
       </div>
     </div>
   </div>
 
-  <!-- ═══ SEO EDITOR TAB ═══ -->
-  <div id="tab-seo" class="tab-content">
-    <div style="margin-bottom:20px;">
-      <div style="font-family:var(--mono);font-size:0.72rem;color:var(--muted);margin-bottom:10px;text-transform:uppercase;">Pages</div>
+  <!-- SEO EDITOR -->
+  <div id="tab-seo" class="tab-pane">
+    <div style="margin-bottom:16px;">
+      <div style="font-size:0.7rem;color:#6b6b7e;text-transform:uppercase;margin-bottom:8px;">Pages</div>
       <% seoPages.forEach(function(p,i){ %>
-      <a href="#" class="page-tab <%= i===0?'active':'' %>" onclick="loadPage('<%= p.page %>',this);return false;">/<%= p.page %></a>
+      <a href="#" class="pg-tab <%= i===0?'active':'' %>" onclick="loadPage('<%= p.page %>',this);return false;">/<%= p.page %></a>
       <% }); %>
-      <form action="/sites/<%= site.siteId %>/pages" method="POST" class="add-page-form">
-        <input type="text" name="page" placeholder="New page slug (e.g. about, contact)" required>
-        <button type="submit" class="btn btn-ghost">+ Add Page</button>
+      <form action="/sites/<%= site.siteId %>/pages" method="POST" class="add-pg">
+        <input type="text" name="page" placeholder="New page slug e.g. about, contact" required>
+        <button type="submit" class="btn btn-g">+ Add</button>
       </form>
     </div>
 
-    <% seoPages.forEach(function(seoPage,idx){ %>
-    <div class="seo-editor page-editor" id="editor-<%= seoPage.page %>" style="<%= idx>0?'display:none;':'' %>">
-      <div class="editor-header">
-        <div class="editor-title">Editing: /<%= seoPage.page %></div>
-        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">Updated: <%= new Date(seoPage.updatedAt).toLocaleString('en-IN') %></div>
+    <% if(seoPages.length===0){ %>
+    <div style="text-align:center;padding:50px;color:#6b6b7e;">No pages yet. Add one above.</div>
+    <% } %>
+
+    <% seoPages.forEach(function(sp,i){ %>
+    <div class="editor page-ed" id="ed-<%= sp.page %>" style="<%= i>0?'display:none':'display:block' %>">
+      <div class="editor-hdr">
+        <div class="editor-title">/<%= sp.page %></div>
+        <div class="editor-date">Updated: <%= new Date(sp.updatedAt).toLocaleDateString('en-IN') %></div>
       </div>
       <form action="/sites/<%= site.siteId %>/seo" method="POST">
-        <input type="hidden" name="page" value="<%= seoPage.page %>">
-        <label>Page Title</label>
-        <input type="text" name="title" value="<%= seoPage.title||'' %>" maxlength="70">
-        <label>Meta Description</label>
-        <textarea name="description" rows="3" maxlength="200"><%= seoPage.description||'' %></textarea>
-        <label>Keywords (Auto-updated by Robot 🤖)</label>
-        <div class="keywords-display"><%= seoPage.keywords||'No keywords yet — click Force Update' %></div>
+        <input type="hidden" name="page" value="<%= sp.page %>">
+        <label>Title</label>
+        <input type="text" name="title" value="<%= sp.title || '' %>" maxlength="70">
+        <label>Description</label>
+        <textarea name="description" rows="3" maxlength="200"><%= sp.description || '' %></textarea>
+        <label>Keywords (Auto-updated by Robot)</label>
+        <div class="kw-box"><%= sp.keywords || 'No keywords yet — click Force Update' %></div>
         <label>Robots</label>
         <select name="robots">
-          <option value="index, follow" <%= seoPage.robots==='index, follow'?'selected':'' %>>index, follow</option>
-          <option value="noindex, nofollow" <%= seoPage.robots==='noindex, nofollow'?'selected':'' %>>noindex, nofollow</option>
-          <option value="index, nofollow" <%= seoPage.robots==='index, nofollow'?'selected':'' %>>index, nofollow</option>
+          <option value="index, follow" <%= sp.robots==='index, follow'?'selected':'' %>>index, follow</option>
+          <option value="noindex, nofollow" <%= sp.robots==='noindex, nofollow'?'selected':'' %>>noindex, nofollow</option>
+          <option value="index, nofollow" <%= sp.robots==='index, nofollow'?'selected':'' %>>index, nofollow</option>
         </select>
-        <div style="margin-top:20px;display:flex;gap:10px;">
-          <button type="submit" class="btn btn-primary">💾 Save Changes</button>
-          <a href="/sites/<%= site.siteId %>/force-update" class="btn btn-ghost">⚡ Refresh Keywords</a>
+        <div style="margin-top:16px;display:flex;gap:8px;">
+          <button type="submit" class="btn btn-o">💾 Save</button>
+          <a href="/sites/<%= site.siteId %>/force-update" class="btn btn-g">⚡ Refresh Keywords</a>
         </div>
       </form>
     </div>
     <% }); %>
-
-    <% if(seoPages.length===0){ %>
-    <div style="text-align:center;padding:60px;color:var(--muted);">
-      <div style="font-size:2.5rem;margin-bottom:12px;">📄</div>
-      <div>No pages yet. Add a page above.</div>
-    </div>
-    <% } %>
   </div>
 
-  <!-- ═══ INSTALL TAB ═══ -->
-  <div id="tab-install" class="tab-content">
-    <!-- Stack selector -->
-    <div style="margin-bottom:20px;">
-      <div style="font-family:var(--mono);font-size:0.72rem;color:var(--muted);margin-bottom:12px;text-transform:uppercase;">Choose your stack</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <button class="page-tab active" onclick="showStack('html',this)">🌐 HTML</button>
-        <button class="page-tab" onclick="showStack('nodejs',this)">🟢 Node.js / EJS</button>
-        <button class="page-tab" onclick="showStack('php',this)">🐘 PHP / Hostinger</button>
-        <button class="page-tab" onclick="showStack('nextjs',this)">⚛️ Next.js</button>
+  <!-- INSTALL -->
+  <div id="tab-install" class="tab-pane">
+    <div style="margin-bottom:18px;">
+      <div style="font-size:0.7rem;color:#6b6b7e;text-transform:uppercase;margin-bottom:10px;">Choose your stack</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        <button class="pg-tab active" onclick="showStack('html',this)">🌐 HTML</button>
+        <button class="pg-tab" onclick="showStack('nodejs',this)">🟢 Node.js/EJS</button>
+        <button class="pg-tab" onclick="showStack('php',this)">🐘 PHP/Hostinger</button>
+        <button class="pg-tab" onclick="showStack('nextjs',this)">⚛️ Next.js</button>
       </div>
     </div>
 
-    <!-- HTML -->
-    <div id="stack-html" class="stack-panel active">
-      <div class="snippet-card">
-        <div class="snippet-title">🌐 HTML / Static Sites <span class="badge badge-orange">JS updates tags</span></div>
-        <div class="snippet-sub">Paste inside &lt;head&gt; on every page. Fallback tags show in view-source; script refreshes with live keywords every 7 hours.</div>
-        <div class="code-block" id="code-html"></div>
-        <button class="copy-btn" onclick="copyCode('code-html',this)">📋 Copy</button>
-      </div>
-      <div class="snippet-card" style="border-color:rgba(255,154,60,0.3);">
-        <div class="snippet-title">💡 Need keywords in view-source?</div>
-        <div class="snippet-sub">Switch to the <strong>PHP / Hostinger</strong> tab — just rename .html → .php and paste the snippet. Keywords appear in view-source instantly ✅</div>
+    <div id="stack-html" class="stack-panel show">
+      <div class="snip-card">
+        <div class="snip-title">🌐 HTML / Static <span class="badge-o">JS updates tags</span></div>
+        <div class="snip-sub">Paste inside &lt;head&gt; on every page. Fallback tags show in view-source; script refreshes keywords every 7 hours.</div>
+        <div class="code" id="c-html">Loading...</div>
+        <button class="copy-btn" onclick="doCopy('c-html',this)">📋 Copy</button>
       </div>
     </div>
 
-    <!-- Node.js -->
     <div id="stack-nodejs" class="stack-panel">
-      <div class="snippet-card" style="border-color:rgba(0,232,143,0.3);">
-        <div class="snippet-title">🟢 Node.js / EJS — 3 Steps <span class="badge badge-green">✅ Keywords in view-source</span></div>
-        <div class="snippet-sub">Keywords are fetched on the server before HTML is sent — Google sees them perfectly.</div>
+      <div class="snip-card" style="border-color:rgba(0,232,143,0.3);">
+        <div class="snip-title">🟢 Node.js/EJS — 3 Steps <span class="badge-g">✅ Keywords in view-source</span></div>
+        <div class="snip-sub">Keywords fetched on server before HTML is sent. Google sees them perfectly.</div>
       </div>
-      <div class="snippet-card">
-        <div class="snippet-title">Step 1 — Helper function in server.js</div>
-        <div class="snippet-sub">Paste this once above your routes.</div>
-        <div class="code-block" id="code-helper"></div>
-        <button class="copy-btn" onclick="copyCode('code-helper',this)">📋 Copy</button>
+      <div class="snip-card">
+        <div class="snip-title">Step 1 — Helper in server.js</div>
+        <div class="code" id="c-helper">Loading...</div>
+        <button class="copy-btn" onclick="doCopy('c-helper',this)">📋 Copy</button>
       </div>
-      <div class="snippet-card">
-        <div class="snippet-title">Step 2 — Update every route</div>
-        <div class="code-block" id="code-routes"></div>
-        <button class="copy-btn" onclick="copyCode('code-routes',this)">📋 Copy</button>
+      <div class="snip-card">
+        <div class="snip-title">Step 2 — Update every route</div>
+        <div class="code" id="c-routes">Loading...</div>
+        <button class="copy-btn" onclick="doCopy('c-routes',this)">📋 Copy</button>
       </div>
-      <div class="snippet-card">
-        <div class="snippet-title">Step 3 — Replace &lt;head&gt; tags in ALL .ejs files</div>
-        <div class="code-block" id="code-ejs"></div>
-        <button class="copy-btn" onclick="copyCode('code-ejs',this)">📋 Copy</button>
+      <div class="snip-card">
+        <div class="snip-title">Step 3 — Replace &lt;head&gt; in ALL .ejs files</div>
+        <div class="code" id="c-ejs">Loading...</div>
+        <button class="copy-btn" onclick="doCopy('c-ejs',this)">📋 Copy</button>
       </div>
     </div>
 
-    <!-- PHP -->
     <div id="stack-php" class="stack-panel">
-      <div class="snippet-card" style="border-color:rgba(0,232,143,0.3);">
-        <div class="snippet-title">🐘 PHP / Hostinger <span class="badge badge-green">✅ Keywords in view-source</span></div>
-        <div class="snippet-sub"><strong>2 steps:</strong> Rename index.html → index.php &nbsp;·&nbsp; Paste code below at line 1 of file. Hostinger supports PHP by default — no setup needed.</div>
+      <div class="snip-card" style="border-color:rgba(0,232,143,0.3);">
+        <div class="snip-title">🐘 PHP/Hostinger <span class="badge-g">✅ Keywords in view-source</span></div>
+        <div class="snip-sub"><strong>2 steps:</strong> Rename .html → .php &nbsp;·&nbsp; Paste code below at line 1 of every file.</div>
       </div>
-      <div class="snippet-card">
-        <div class="snippet-title">Paste at top of every .php file</div>
-        <div class="code-block" id="code-php"></div>
-        <button class="copy-btn" onclick="copyCode('code-php',this)">📋 Copy</button>
-      </div>
-      <div class="snippet-card" style="background:var(--surface2);">
-        <div class="snippet-title">📁 Files to rename on Hostinger</div>
-        <div style="font-family:var(--mono);font-size:0.8rem;line-height:2.2;color:var(--muted);">
-          index.html → index.php &nbsp;·&nbsp; about.html → about.php<br>
-          contact.html → contact.php &nbsp;·&nbsp; services.html → services.php
-        </div>
+      <div class="snip-card">
+        <div class="snip-title">Paste at top of every .php file</div>
+        <div class="code" id="c-php">Loading...</div>
+        <button class="copy-btn" onclick="doCopy('c-php',this)">📋 Copy</button>
       </div>
     </div>
 
-    <!-- Next.js -->
     <div id="stack-nextjs" class="stack-panel">
-      <div class="snippet-card">
-        <div class="snippet-title">Option A — _document.js (all pages via script)</div>
-        <div class="code-block" id="code-nextjs-a"></div>
-        <button class="copy-btn" onclick="copyCode('code-nextjs-a',this)">📋 Copy</button>
+      <div class="snip-card">
+        <div class="snip-title">Option A — _document.js (all pages)</div>
+        <div class="code" id="c-nxa">Loading...</div>
+        <button class="copy-btn" onclick="doCopy('c-nxa',this)">📋 Copy</button>
       </div>
-      <div class="snippet-card">
-        <div class="snippet-title">Option B — Per page server-side <span class="badge badge-green">✅ Best SEO</span></div>
-        <div class="code-block" id="code-nextjs-b"></div>
-        <button class="copy-btn" onclick="copyCode('code-nextjs-b',this)">📋 Copy</button>
-      </div>
-    </div>
-
-    <!-- How it works -->
-    <div class="snippet-card" style="border-color:rgba(59,130,246,0.3);margin-top:8px;">
-      <div class="snippet-title">💡 How It Works</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;">
-        <div style="background:var(--surface2);border-radius:8px;padding:14px;"><strong>1️⃣ One-time setup</strong><div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">Add snippet to client site. Takes 2 minutes.</div></div>
-        <div style="background:var(--surface2);border-radius:8px;padding:14px;"><strong>2️⃣ Meta injected</strong><div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">Title, description, keywords, OG tags on every page.</div></div>
-        <div style="background:var(--surface2);border-radius:8px;padding:14px;"><strong>3️⃣ Traffic tracked</strong><div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">Visits, device, referrer logged. Bots filtered out.</div></div>
-        <div style="background:var(--surface2);border-radius:8px;padding:14px;"><strong>4️⃣ Auto-updates</strong><div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">Every 7h, trending keywords pushed to all pages.</div></div>
+      <div class="snip-card">
+        <div class="snip-title">Option B — Per page server-side <span class="badge-g">✅ Best SEO</span></div>
+        <div class="code" id="c-nxb">Loading...</div>
+        <button class="copy-btn" onclick="doCopy('c-nxb',this)">📋 Copy</button>
       </div>
     </div>
   </div>
 
-  <!-- ═══ HISTORY TAB ═══ -->
-  <div id="tab-history" class="tab-content">
-    <div class="snippet-card">
-      <div class="table-title">Keyword Update History</div>
+  <!-- HISTORY -->
+  <div id="tab-history" class="tab-pane">
+    <div class="card">
+      <div class="card-title">Keyword Update History</div>
       <% if(keywordHistory.length===0){ %>
-      <p style="color:var(--muted);font-size:0.85rem;margin-top:16px;">No updates yet. Click Force Update to start.</p>
+      <div class="empty">No updates yet. Click Force Update.</div>
       <% } else { %>
       <% keywordHistory.forEach(function(log){ %>
-      <div class="kw-item">
+      <div class="kw-row">
         <div>
-          <span class="kw-source src-<%= log.source %>">
-            <%= log.source==='google-trends'?'📈 Google Trends': log.source==='manual'?'✏️ Manual':'⚡ Fallback' %>
-          </span>
+          <span class="src-badge src-<%= log.source %>"><%= log.source==='google-trends'?'📈 Trends':log.source==='manual'?'✏️ Manual':'⚡ Fallback' %></span>
           <div class="kw-date"><%= new Date(log.date).toLocaleString('en-IN') %></div>
         </div>
         <div class="kw-text"><%= log.keywords %></div>
@@ -368,219 +327,187 @@ textarea{min-height:80px;}
     </div>
   </div>
 
-  <!-- ═══ SETTINGS TAB ═══ -->
-  <div id="tab-settings" class="tab-content">
-    <div class="seo-editor">
-      <div class="editor-title" style="margin-bottom:20px;">Site Settings</div>
+  <!-- SETTINGS -->
+  <div id="tab-settings" class="tab-pane">
+    <div class="editor">
+      <div class="editor-hdr"><div class="editor-title">Site Settings</div></div>
       <form action="/sites/<%= site.siteId %>/update-settings" method="POST">
         <label>Site Name</label>
         <input type="text" name="name" value="<%= site.name %>">
         <label>Domain</label>
-        <input type="text" name="domain" value="<%= site.domain||'' %>" placeholder="e.g. agrimclasses.com">
+        <input type="text" name="domain" value="<%= site.domain || '' %>" placeholder="agrimclasses.com">
         <label>Category</label>
         <select name="category">
           <% ['education','realestate','restaurant','ecommerce','healthcare','technology','fashion','fitness','travel','digitalmarketing','default'].forEach(function(cat){ %>
           <option value="<%= cat %>" <%= site.category===cat?'selected':'' %>><%= cat %></option>
           <% }); %>
         </select>
-        <div style="margin-top:20px;">
-          <button type="submit" class="btn btn-primary">💾 Save Settings</button>
+        <div style="margin-top:16px;">
+          <button type="submit" class="btn btn-o">💾 Save Settings</button>
         </div>
       </form>
     </div>
-    <div class="danger-zone">
+    <div class="danger">
       <div class="danger-title">⚠️ Danger Zone</div>
-      <div style="font-size:0.85rem;color:var(--muted);margin-bottom:16px;">Permanently deletes all SEO data, traffic, and keyword history for this site.</div>
-      <form action="/sites/<%= site.siteId %>/delete" method="POST" onsubmit="return confirm('Delete this site? Cannot be undone.')"
-        <button type="submit" class="btn btn-danger">🗑️ Delete Site</button>
+      <div style="font-size:0.83rem;color:#6b6b7e;margin-bottom:14px;">Permanently deletes all data for this site.</div>
+      <form action="/sites/<%= site.siteId %>/delete" method="POST" onsubmit="return confirm('Delete this site? This cannot be undone.')">
+        <button type="submit" class="btn btn-red">🗑️ Delete Site</button>
       </form>
     </div>
   </div>
-</main>
+</div>
 
 <script>
-// ── All code snippets built safely in JS — zero EJS nesting issues ────────────
-var HUB  = '<%= hubUrl %>';
-var SID  = '<%= site.siteId %>';
-var NAME = '<%= site.name %>';
+// Safe values passed from server — no complex EJS
+var HUB = '<%= hubUrl %>';
+var SID = '<%= site.siteId %>';
+var NM  = '<%= site.name %>';
 
-var SNIPPETS = {
-  'code-html': [
-    '<!-- Manofox SEO Hub — paste inside <head> -->',
-    '<meta name="description" content="Best services in India">',
-    '<meta name="keywords" content="services, india, best">',
-    '<meta name="robots" content="index, follow">',
-    '<script src="' + HUB + '/seo.js?site=' + SID + '" defer><\/script>'
-  ].join('\n'),
+// Build all code snippets in JS only (no EJS inside JS strings)
+document.getElementById('c-html').textContent = [
+  '<!-- Manofox SEO Hub — paste in <head> -->',
+  '<meta name="description" content="Best services in India">',
+  '<meta name="keywords" content="services, india, best">',
+  '<meta name="robots" content="index, follow">',
+  '<script src="' + HUB + '/seo.js?site=' + SID + '" defer><\/script>'
+].join('\n');
 
-  'code-helper': [
-    '// STEP 1 — Add this helper to your server.js (above routes)',
-    '',
-    "const SEO_HUB = '" + HUB + "';",
-    '',
-    "async function getSeo(page) {",
-    "    page = page || 'home';",
-    "    try {",
-    "        const r    = await fetch(SEO_HUB + '/api/seo/" + SID + "?page=' + page);",
-    "        const data = await r.json();",
-    "        return {",
-    "            title:       data.title         || '" + NAME + "',",
-    "            description: data.description   || 'Welcome to " + NAME + "',",
-    "            keywords:    data.keywords      || 'services, india',",
-    "            robots:      data.robots        || 'index, follow',",
-    "            ogTitle:     data.ogTitle       || data.title || '" + NAME + "',",
-    "            ogDesc:      data.ogDescription || ''",
-    "        };",
-    "    } catch (e) {",
-    "        return { title: '" + NAME + "', description: 'Welcome', keywords: 'services', robots: 'index, follow' };",
-    "    }",
-    "}"
-  ].join('\n'),
+document.getElementById('c-helper').textContent = [
+  '// Paste this above your routes in server.js',
+  "const SEO_HUB = '" + HUB + "';",
+  '',
+  "async function getSeo(page) {",
+  "    try {",
+  "        const r = await fetch(SEO_HUB + '/api/seo/" + SID + "?page=' + (page||'home'));",
+  "        return await r.json();",
+  "    } catch(e) {",
+  "        return { title: '" + NM + "', description: 'Welcome', keywords: 'services', robots: 'index, follow' };",
+  "    }",
+  "}"
+].join('\n');
 
-  'code-routes': [
-    '// STEP 2 — Call getSeo() in every route',
-    '',
-    "app.get('/', async (req, res) => {",
-    "    const seo = await getSeo('home');",
-    "    res.render('index', { seo });",
-    "});",
-    '',
-    "app.get('/about', async (req, res) => {",
-    "    const seo = await getSeo('about');",
-    "    res.render('about', { seo });",
-    "});",
-    '',
-    "app.get('/contact', async (req, res) => {",
-    "    const seo = await getSeo('contact');",
-    "    res.render('contact', { seo });",
-    "});",
-    '',
-    "// Add more routes the same way..."
-  ].join('\n'),
+document.getElementById('c-routes').textContent = [
+  "app.get('/', async (req, res) => {",
+  "    const seo = await getSeo('home');",
+  "    res.render('index', { seo });",
+  "});",
+  '',
+  "app.get('/about', async (req, res) => {",
+  "    const seo = await getSeo('about');",
+  "    res.render('about', { seo });",
+  "});",
+  '',
+  "app.get('/contact', async (req, res) => {",
+  "    const seo = await getSeo('contact');",
+  "    res.render('contact', { seo });",
+  "});",
+  "// Repeat for every route..."
+].join('\n');
 
-  'code-ejs': [
-    '<!-- STEP 3 — Replace <head> tags in ALL .ejs files -->',
-    '',
-    "<title><%= seo ? seo.title : '" + NAME + "' %><\/title>",
-    '<meta name="description" content="<%= seo ? seo.description : \'Welcome\' %>">',
-    '<meta name="keywords"    content="<%= seo ? seo.keywords : \'services\' %>">',
-    '<meta name="robots"      content="<%= seo ? seo.robots : \'index, follow\' %>">',
-    "<meta property=\"og:title\" content=\"<%= seo ? seo.ogTitle : '" + NAME + "' %>\">",
-    '',
-    '<!-- Keywords now appear in view-source ✅ -->'
-  ].join('\n'),
+document.getElementById('c-ejs').textContent = [
+  "<!-- In <head> of ALL your .ejs files -->",
+  "<title><" + "%= seo ? seo.title : '" + NM + "' %" + "></title>",
+  '<meta name="description" content="<' + '%= seo ? seo.description : \'Welcome\' %' + '>">',
+  '<meta name="keywords"    content="<' + '%= seo ? seo.keywords : \'services\' %' + '>">',
+  '<meta name="robots"      content="<' + '%= seo ? seo.robots : \'index, follow\' %' + '>">'
+].join('\n');
 
-  'code-php': [
-    '<?php',
-    '/* RENAME: index.html -> index.php | PASTE at TOP of file (line 1) */',
-    '',
-    "$hub  = '" + HUB + "';",
-    "$page = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/') ?: 'home';",
-    "$page = pathinfo($page, PATHINFO_FILENAME);",
-    "if ($page === 'index') $page = 'home';",
-    'try {',
-    "    $json = @file_get_contents($hub . '/api/seo/" + SID + "?page=' . urlencode($page));",
-    '    $seo  = $json ? json_decode($json, true) : [];',
-    '} catch(Exception $e) { $seo = []; }',
-    '',
-    "$title  = htmlspecialchars($seo['title']       ?? '" + NAME + "');",
-    "$desc   = htmlspecialchars($seo['description'] ?? 'Welcome to " + NAME + "');",
-    "$keys   = htmlspecialchars($seo['keywords']    ?? 'services, india');",
-    "$robots = htmlspecialchars($seo['robots']      ?? 'index, follow');",
-    '?>',
-    '<!DOCTYPE html>',
-    '<html lang="en">',
-    '<head>',
-    '    <meta charset="UTF-8">',
-    '    <title><?= $title ?></title>',
-    '    <meta name="description" content="<?= $desc ?>">',
-    '    <meta name="keywords"    content="<?= $keys ?>">',
-    '    <meta name="robots"      content="<?= $robots ?>">',
-    '    <!-- your CSS links below -->'
-  ].join('\n'),
+document.getElementById('c-php').textContent = [
+  '<?php',
+  "// Rename index.html to index.php then paste at line 1",
+  "$hub  = '" + HUB + "';",
+  "$page = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/') ?: 'home';",
+  "$page = pathinfo($page, PATHINFO_FILENAME);",
+  "if ($page === 'index') $page = 'home';",
+  "try {",
+  "    $json = @file_get_contents($hub.'/api/seo/" + SID + "?page='.urlencode($page));",
+  "    $seo  = $json ? json_decode($json,true) : [];",
+  "} catch(Exception $e){ $seo=[]; }",
+  "$title  = htmlspecialchars($seo['title']       ?? '" + NM + "');",
+  "$desc   = htmlspecialchars($seo['description'] ?? 'Welcome');",
+  "$keys   = htmlspecialchars($seo['keywords']    ?? 'services');",
+  "$robots = htmlspecialchars($seo['robots']      ?? 'index, follow');",
+  '?>',
+  '<!DOCTYPE html><html lang="en"><head>',
+  '    <title><?= $title ?></title>',
+  '    <meta name="description" content="<?= $desc ?>">',
+  '    <meta name="keywords"    content="<?= $keys ?>">',
+  '    <meta name="robots"      content="<?= $robots ?>">'
+].join('\n');
 
-  'code-nextjs-a': [
-    "// pages/_document.js",
-    "import { Html, Head, Main, NextScript } from 'next/document'",
-    'export default function Document() {',
-    '  return (',
-    '    <Html lang="en"><Head>',
-    "      <script src='" + HUB + "/seo.js?site=" + SID + "' defer />",
-    '    </Head><body><Main /><NextScript /></body></Html>',
-    '  )',
-    '}'
-  ].join('\n'),
+document.getElementById('c-nxa').textContent = [
+  "// pages/_document.js",
+  "import { Html, Head, Main, NextScript } from 'next/document'",
+  "export default function Document() {",
+  "  return (<Html><Head>",
+  "    <script src='" + HUB + "/seo.js?site=" + SID + "' defer />" ,
+  "  </Head><body><Main /><NextScript /></body></Html>)",
+  "}"
+].join('\n');
 
-  'code-nextjs-b': [
-    "// pages/index.js — server-side (keywords in view-source)",
-    "import Head from 'next/head'",
-    'export async function getServerSideProps() {',
-    "    const res = await fetch('" + HUB + "/api/seo/" + SID + "?page=home');",
-    '    const seo = await res.json();',
-    '    return { props: { seo } };',
-    '}',
-    'export default function Home({ seo }) {',
-    '    return (<><Head>',
-    '        <title>{seo.title}</title>',
-    '        <meta name="description" content={seo.description} />',
-    '        <meta name="keywords" content={seo.keywords} />',
-    '    </Head></>);',
-    '}'
-  ].join('\n')
-};
+document.getElementById('c-nxb').textContent = [
+  "// pages/index.js",
+  "import Head from 'next/head'",
+  "export async function getServerSideProps() {",
+  "    const res = await fetch('" + HUB + "/api/seo/" + SID + "?page=home');",
+  "    const seo = await res.json();",
+  "    return { props: { seo } };",
+  "}",
+  "export default function Home({ seo }) {",
+  "    return (<><Head>",
+  "        <title>{seo.title}</title>",
+  "        <meta name='description' content={seo.description} />",
+  "        <meta name='keywords' content={seo.keywords} />",
+  "    </Head></>);",
+  "}"
+].join('\n');
 
-// Fill all code blocks from JS
-Object.keys(SNIPPETS).forEach(function(id) {
-  var el = document.getElementById(id);
-  if (el) el.textContent = SNIPPETS[id];
-});
-
-// ── Tab switching ─────────────────────────────────────────────────────────────
-function switchTab(id, el) {
-  document.querySelectorAll('.tab-content').forEach(function(t){ t.classList.remove('active'); });
+// Tab switching
+function showTab(id, el) {
+  document.querySelectorAll('.tab-pane').forEach(function(p){ p.classList.remove('active'); });
   document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
   document.getElementById('tab-'+id).classList.add('active');
   el.classList.add('active');
 }
 
-// ── Stack switching ───────────────────────────────────────────────────────────
+// Stack switching
 function showStack(id, el) {
-  document.querySelectorAll('.stack-panel').forEach(function(p){ p.classList.remove('active'); });
-  document.getElementById('stack-'+id).classList.add('active');
-  el.closest('#tab-install').querySelectorAll('.page-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.stack-panel').forEach(function(p){ p.classList.remove('show'); });
+  document.getElementById('stack-'+id).classList.add('show');
+  el.closest('#tab-install').querySelectorAll('.pg-tab').forEach(function(t){ t.classList.remove('active'); });
   el.classList.add('active');
 }
 
-// ── SEO page switching ────────────────────────────────────────────────────────
-function loadPage(pageName, el) {
-  document.querySelectorAll('.page-editor').forEach(function(e){ e.style.display='none'; });
-  document.querySelectorAll('.page-tab').forEach(function(e){ e.classList.remove('active'); });
-  var ed = document.getElementById('editor-'+pageName);
-  if (ed) ed.style.display = 'block';
+// SEO page switching
+function loadPage(name, el) {
+  document.querySelectorAll('.page-ed').forEach(function(e){ e.style.display='none'; });
+  el.closest('#tab-seo').querySelectorAll('.pg-tab').forEach(function(t){ t.classList.remove('active'); });
+  var ed = document.getElementById('ed-'+name);
+  if(ed) ed.style.display = 'block';
   el.classList.add('active');
 }
 
-// ── Copy code ─────────────────────────────────────────────────────────────────
-function copyCode(blockId, btn) {
-  var text = document.getElementById(blockId).textContent;
-  navigator.clipboard.writeText(text).then(function() {
-    var orig = btn.textContent;
+// Copy code
+function doCopy(id, btn) {
+  navigator.clipboard.writeText(document.getElementById(id).textContent).then(function(){
+    var o = btn.textContent;
     btn.textContent = '✅ Copied!';
-    btn.style.color = 'var(--green)';
-    setTimeout(function(){ btn.textContent=orig; btn.style.color=''; }, 2000);
+    btn.style.color = '#00e88f';
+    setTimeout(function(){ btn.textContent=o; btn.style.color=''; }, 2000);
   });
 }
 
-// ── Toast on save ─────────────────────────────────────────────────────────────
-if (window.location.search.includes('saved=1')) {
+// Save toast
+if(window.location.search.indexOf('saved=1') > -1) {
   var t = document.createElement('div');
-  t.className = 'toast'; t.textContent = '✅ Saved successfully!';
+  t.className = 'toast';
+  t.textContent = '✅ Saved!';
   document.body.appendChild(t);
   setTimeout(function(){ t.remove(); }, 3000);
   history.replaceState(null,'',window.location.pathname);
 }
 
-// ── Charts ────────────────────────────────────────────────────────────────────
+// Charts
 var daily   = <%- JSON.stringify(dailyStats) %>;
 var devices = <%- JSON.stringify(deviceStats) %>;
 
@@ -594,15 +521,19 @@ new Chart(document.getElementById('trafficChart'), {
     datasets: [{
       label: 'Visits',
       data: daily.map(function(d){ return d.count; }),
-      borderColor: '#ff5c00', backgroundColor: 'rgba(255,92,0,0.08)',
-      borderWidth: 2.5, fill: true, tension: 0.4,
-      pointBackgroundColor: '#ff5c00', pointRadius: 4
+      borderColor: '#ff5c00',
+      backgroundColor: 'rgba(255,92,0,0.08)',
+      borderWidth: 2, fill: true, tension: 0.4,
+      pointBackgroundColor: '#ff5c00', pointRadius: 3
     }]
   },
   options: {
     maintainAspectRatio: false,
     plugins: { legend: { display: false } },
-    scales: { y: { beginAtZero: true, grid: { color: '#1e1e2a' } }, x: { grid: { display: false } } }
+    scales: {
+      y: { beginAtZero: true, grid: { color: '#1e1e2a' } },
+      x: { grid: { display: false } }
+    }
   }
 });
 
@@ -610,11 +541,16 @@ new Chart(document.getElementById('deviceChart'), {
   type: 'doughnut',
   data: {
     labels: devices.map(function(d){ return d._id; }),
-    datasets: [{ data: devices.map(function(d){ return d.count; }), backgroundColor: ['#ff5c00','#00e88f','#3b82f6'], borderWidth: 0 }]
+    datasets: [{
+      data: devices.map(function(d){ return d.count; }),
+      backgroundColor: ['#ff5c00','#00e88f','#3b82f6'],
+      borderWidth: 0
+    }]
   },
   options: {
-    maintainAspectRatio: false, cutout: '72%',
-    plugins: { legend: { position: 'bottom', labels: { color: '#e8e8f0', padding: 16 } } }
+    maintainAspectRatio: false,
+    cutout: '70%',
+    plugins: { legend: { position: 'bottom', labels: { color: '#e8e8f0', padding: 14 } } }
   }
 });
 </script>
